@@ -21,20 +21,11 @@ jobs:
         env:
           GDRIVE_SA_KEY: ${{ secrets.GDRIVE_SERVICE_ACCOUNT_KEY }}
         run: |
-          # Write service account key
           echo "$GDRIVE_SA_KEY" > /tmp/sa_key.json
 
-          # Create rclone config
           mkdir -p ~/.config/rclone
-          cat > ~/.config/rclone/rclone.conf << EOF
-[gdrive]
-type = drive
-service_account_file = /tmp/sa_key.json
-root_folder_id = 1ZE5bxcjgUTVRtdUS-BwWqgZkANQEDC0T
-EOF
+          printf '[gdrive]\ntype = drive\nservice_account_file = /tmp/sa_key.json\nroot_folder_id = 1ZE5bxcjgUTVRtdUS-BwWqgZkANQEDC0T\n' > ~/.config/rclone/rclone.conf
 
-          # Upload ApkFile folder
           rclone copy ApkFile/ gdrive: --progress
 
-          # Clean up
           rm -f /tmp/sa_key.json
