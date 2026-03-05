@@ -15,17 +15,26 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Install rclone
-        run: sudo apt-get install -y rclone
+        run: |
+          curl https://rclone.org/install.sh | sudo bash
+          rclone --version
 
       - name: Upload ApkFile Folder to Google Drive
         env:
           GDRIVE_SA_KEY: ${{ secrets.GDRIVE_SERVICE_ACCOUNT_KEY }}
         run: |
-          echo "$GDRIVE_SA_KEY" > /tmp/sa_key.json
+          # Write service account key (printenv avoids shell escaping issues)
+          printenv GDRIVE_SA_KEY > /tmp/sa_key.json
 
+          # Verify the JSON is valid
+          python3 -c "import json; json.load(open('/tmp/sa_key.json')); print('SA key JSON is valid')"
+
+          # Create rclone config
           mkdir -p ~/.config/rclone
           printf '[gdrive]\ntype = drive\nservice_account_file = /tmp/sa_key.json\nroot_folder_id = 1ZE5bxcjgUTVRtdUS-BwWqgZkANQEDC0T\n' > ~/.config/rclone/rclone.conf
 
-          rclone copy ApkFile/ gdrive: --progress
+          # Upload ApkFile folder
+          rclone copy ApkFile/ gdrive: --verbose
 
+          # Clean up
           rm -f /tmp/sa_key.json
