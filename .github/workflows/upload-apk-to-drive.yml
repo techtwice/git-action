@@ -1,0 +1,31 @@
+name: Upload APK Folder to Google Drive
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  upload-to-drive:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Install rclone
+        run: curl https://rclone.org/install.sh | sudo bash
+
+      - name: Upload ApkFile Folder to Google Drive
+        env:
+          GDRIVE_SA_KEY: ${{ secrets.GDRIVE_SERVICE_ACCOUNT_KEY }}
+          GDRIVE_FOLDER_ID: ${{ secrets.GDRIVE_FOLDER_ID }}
+        run: |
+          echo "$GDRIVE_SA_KEY" > /tmp/sa_key.json
+          rclone copy ApkFile/ :drive: \
+            --drive-service-account-file /tmp/sa_key.json \
+            --drive-root-folder-id "$GDRIVE_FOLDER_ID" \
+            --progress \
+            --stats 10s
+          rm -f /tmp/sa_key.json
