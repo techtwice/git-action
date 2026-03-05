@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Git Action — APK Auto Upload</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #0f0f1a;
+      color: #e0e0e0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .card {
+      background: #1a1a2e;
+      border: 1px solid #2e2e5e;
+      border-radius: 16px;
+      padding: 48px 40px;
+      max-width: 560px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.4);
+    }
+
+    .icon {
+      font-size: 52px;
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      font-size: 28px;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 15px;
+      color: #9090b0;
+      line-height: 1.6;
+      margin-bottom: 28px;
+    }
+
+    .badges {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 32px;
+    }
+
+    .badge {
+      background: #252545;
+      border: 1px solid #3a3a6a;
+      border-radius: 20px;
+      padding: 6px 16px;
+      font-size: 13px;
+      color: #a0a0d0;
+    }
+
+    .badge.green { border-color: #2ecc71; color: #2ecc71; }
+    .badge.blue  { border-color: #3498db; color: #3498db; }
+    .badge.purple{ border-color: #9b59b6; color: #9b59b6; }
+
+    .steps {
+      text-align: left;
+      background: #12122a;
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin-bottom: 28px;
+    }
+
+    .steps h3 {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #6060a0;
+      margin-bottom: 14px;
+    }
+
+    .step {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 8px 0;
+      font-size: 14px;
+      color: #c0c0e0;
+      border-bottom: 1px solid #1e1e3e;
+    }
+
+    .step:last-child { border-bottom: none; }
+
+    .step-num {
+      background: #2e2e5e;
+      color: #8080c0;
+      border-radius: 50%;
+      width: 26px;
+      height: 26px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: bold;
+      flex-shrink: 0;
+    }
+
+    .btn {
+      display: inline-block;
+      background: linear-gradient(135deg, #6c63ff, #3b82f6);
+      color: #fff;
+      text-decoration: none;
+      padding: 12px 32px;
+      border-radius: 30px;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      transition: opacity 0.2s;
+    }
+
+    .btn:hover { opacity: 0.85; }
+
+    footer {
+      margin-top: 32px;
+      font-size: 12px;
+      color: #404060;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <div class="icon">🚀</div>
+    <h1>Git Action</h1>
+    <p>Automatically uploads the <strong>ApkFile</strong> folder to Google Drive on every push to <code>main</code> — or trigger it manually anytime.</p>
+
+    <div class="badges">
+      <span class="badge green">✓ Auto Upload</span>
+      <span class="badge blue">⚡ GitHub Actions</span>
+      <span class="badge purple">☁ Google Drive</span>
+    </div>
+
+    <div class="steps">
+      <h3>How It Works</h3>
+      <div class="step"><span class="step-num">1</span> Push code to the <strong>main</strong> branch</div>
+      <div class="step"><span class="step-num">2</span> GitHub Actions workflow triggers</div>
+      <div class="step"><span class="step-num">3</span> rclone uploads <strong>ApkFile/</strong> to Drive</div>
+      <div class="step"><span class="step-num">4</span> Files appear in your Google Drive folder</div>
+    </div>
+
+    <a class="btn" href="https://github.com/techtwice/git-action/actions" target="_blank">View Actions →</a>
+  </div>
+
+  <footer>techtwice / git-action &nbsp;·&nbsp; Powered by GitHub Actions</footer>
+
+</body>
+</html>

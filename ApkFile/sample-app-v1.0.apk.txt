@@ -1,0 +1,9 @@
+This is a placeholder for sample-app-v1.0.apk
+
+Place your real APK files in this folder (ApkFile/).
+Every push to the main branch will automatically upload
+all files here to your Google Drive folder via GitHub Actions.
+
+App: Git-Action Sample App
+Version: 1.0.0
+Build Date: 2026-03-05
